@@ -25,15 +25,13 @@ export async function POST(request: Request) {
   const phone = body.phone?.trim() ?? "";
   const topic = body.topic?.trim() ?? "";
 
-  if (name.length < 2 || !emailOk(email) || message.length < 3 || !body.consent) {
+  if (name.length < 2 || !emailOk(email) || message.length < 3 || body.consent !== true) {
     return NextResponse.json({ ok: false, error: "Uzupełnij wymagane pola." }, { status: 400 });
   }
-  if (message.length > 600 || phone.length > 40 || name.length > 120) {
+  if (message.length > 600 || phone.length > 40 || name.length > 120 || topic.length > 80) {
     return NextResponse.json({ ok: false, error: "Za długa treść." }, { status: 400 });
   }
 
-  return NextResponse.json({
-    ok: true,
-    received: { name, email, phone, topic, message },
-  });
+  // Wersja demonstracyjna: wiadomość nie jest jeszcze wysyłana mailem do szkoły.
+  return NextResponse.json({ ok: true });
 }

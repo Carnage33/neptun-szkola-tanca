@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { ArrowRight } from "@/components/icons";
 
 export function Subpage({
   eyebrow,
@@ -10,37 +13,28 @@ export function Subpage({
   children: React.ReactNode;
 }) {
   return (
-    <div className="demo-witryna" data-motion="standard">
-      <header className="nav" data-scrolled="false" data-style="solid">
-        <div className="wrap nav-inner">
-          <Link className="brand" href="/">
-            <span className="brand-logo">
-              <img src="/logo.svg" alt="Szkoła Tańca Neptun" />
-            </span>
-            <span className="brand-text">
-              <span className="brand-name">Neptun</span>
-              <span className="brand-sub">Koszalin</span>
-            </span>
-          </Link>
-          <div className="nav-actions">
-            <Link href="/#contact" className="btn btn-primary btn-nav">
-              Kontakt
-            </Link>
+    <>
+      <SiteHeader />
+      <main className="subpage">
+        <div className="subpage-hero dark">
+          <div className="section-glow" aria-hidden="true" />
+          <div className="wrap">
+            <p className="eyebrow">{eyebrow}</p>
+            <h1 className="title">{title}</h1>
           </div>
         </div>
-      </header>
-      <main className="band subpage">
-        <div className="wrap">
-          <p className="eyebrow">{eyebrow}</p>
-          <h1 className="title">{title}</h1>
-          <div className="prose">{children}</div>
-          <p style={{ marginTop: "2.2rem" }}>
-            <Link href="/" className="btn btn-outline">
-              Wróć na stronę główną
-            </Link>
-          </p>
+        <div className="band">
+          <div className="wrap">
+            <div className="prose">{children}</div>
+            <p className="subpage-back">
+              <Link href="/" className="btn btn-dark">
+                Wróć na stronę główną <ArrowRight size={16} />
+              </Link>
+            </p>
+          </div>
         </div>
       </main>
-    </div>
+      <SiteFooter />
+    </>
   );
 }
